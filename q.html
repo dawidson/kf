@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>KF - kod Q</title>
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --primary-hover-color: #45a049;
+      --text-color: white;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      padding: 20px;
+    }
+    #test-container {
+      margin: 20px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      margin: 0 auto;
+      display: block;
+    }
+    button:hover {
+      background-color: var(--primary-hover-color);
+    }
+    .answer-button {
+      display: inline-block;
+      margin: 5px 0;
+      padding: 10px;
+      background-color: #707070;
+      border: none;
+      cursor: pointer;
+      width: 50%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .answer-button:hover {
+      background-color: #505050;
+    }
+    #answers {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+    }
+    #restart-button, #start-button {
+      margin: 20px auto;
+      display: block;
+    }
+    #question-image {
+      display: block;
+      margin: 10px auto;
+    }
+    .summary-hr {
+      width: 80%;
+      margin: 10px auto;
+      border: 1px solid #ddd;
+    }
+    #question, .summary-question {
+      word-wrap: break-word;
+      display: inline-block;
+      max-width: 50%;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+    .question-spacing {
+      margin-bottom: 10px;
+    }
+    .table-container {
+      text-align: center;
+      width: 100%;
+    }
+    table {
+      width: 50%;
+      margin: auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .hidden-value {
+      display: none;
+    }
+  </style>
+  <script>
+    const slownik = {
+      			"QRA": "Moja stacja nazywa się…",
+            "QRG": "Twoja częstotliwość wynosi…",
+            "QRK": "Czytelność waszych sygnałów wynosi (1…5)",
+            "QRL": "Jestem zajęty, proszę nie przeszkadzać",
+            "QRM": "Mam przeszkody w odbiorze, zakłócenia od innych stacji",
+            "QRN": "Mam zakłócenia atmosferyczne",
+            "QRO": "Zwiększ moc, duża moc",
+            "QRP": "Zmniejsz moc, mała moc",
+            "QRRR": "Znak niebezpieczeństwa na lądzie (tylko w ruchu amatorskim)",
+            "QRT": "Kończę nadawanie, wyłączam stację, przerwij nadawanie!",
+            "QRV": "Jestem gotów do pracy",
+            "QRX": "Proszę poczekać, zawołam was o godzinie …",
+            "QRZ": "Was woła…, kto mnie woła?",
+            "QSB": "Siła waszego sygnału waha się",
+            "QSL": "Potwierdzam, przyślę kartę QSL",
+            "QSO": "Łączność, mam połączenie",
+            "QSY": "Przejdźcie na częstotliwość…",
+            "QTC": "Mam dla was wiadomość",
+            "QTH": "Moje położenie geograficzne to…",
+            "Moja stacja nazywa się…": "QRA",
+            "Twoja częstotliwość wynosi…": "QRG",
+            "Czytelność waszych sygnałów wynosi (1…5)": "QRK",
+            "Jestem zajęty, proszę nie przeszkadzać": "QRL",
+            "Mam przeszkody w odbiorze, zakłócenia od innych stacji": "QRM",
+            "Mam zakłócenia atmosferyczne": "QRN",
+            "Zwiększ moc, duża moc": "QRO",
+            "Zmniejsz moc, mała moc": "QRP",
+            "Znak niebezpieczeństwa na lądzie (tylko w ruchu amatorskim)": "QRRR",
+            "Kończę nadawanie, wyłączam stację, przerwij nadawanie!": "QRT",
+            "Jestem gotów do pracy": "QRV",
+            "Proszę poczekać, zawołam was o godzinie …": "QRX",
+            "Was woła…, kto mnie woła?": "QRZ",
+            "Siła waszego sygnału waha się": "QSB",
+            "Potwierdzam, przyślę kartę QSL": "QSL",
+            "Łączność, mam połączenie": "QSO",
+            "Przejdźcie na częstotliwość…": "QSY",
+            "Mam dla was wiadomość": "QTC",
+            "Moje położenie geograficzne to…": "QTH"
+    };
+
+    function getRandomKeys(obj, num) {
+      const keys = Object.keys(obj);
+      let randomKeys = [];
+      for (let i = 0; i < num; i++) {
+        let randomKey;
+        do {
+          randomKey = keys[Math.floor(Math.random() * keys.length)];
+        } while (randomKeys.includes(randomKey));
+        randomKeys.push(randomKey);
+      }
+      return randomKeys;
+    }
+
+    function showRandomKeys() {
+      const randomKeys = getRandomKeys(slownik, 10);
+      let tableContent = randomKeys.map(key => `<tr><td>${key}</td><td><span class="hidden-value">${slownik[key]}</span></td></tr>`).join('');
+      document.getElementById('keys').innerHTML = `<div class="table-container"><table><tr><th>Klucz</th><th>Wartość</th></tr>${tableContent}</table></div>`;
+      document.getElementById('revealValuesButton').style.display = 'block';
+    }
+
+    function revealValues() {
+      const hiddenValues = document.querySelectorAll('.hidden-value');
+      hiddenValues.forEach(value => value.style.display = 'inline');
+//      document.getElementById('revealValuesButton').style.display = 'none';
+    }
+  </script>
+</head>
+<body>
+  <h1>KF - kod Q</h1>
+  <button onclick="location.href='index.html';">back to index </button>
+  <br>
+  <button onclick="showRandomKeys()">Losuj Klucze</button>
+  <br>
+  <button id="revealValuesButton" style="display: none;" onclick="revealValues()">Pokaż Wartości</button>
+  <br>
+  <div id="keys">Klucze:</div>
+    
+</body>
+</html>

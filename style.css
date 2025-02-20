@@ -1,0 +1,86 @@
+:root {
+    --primary-color: #4CAF50;
+    --primary-hover-color: #45a049;
+    --text-color: white;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 20px;
+}
+
+#test-container {
+    margin: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.answer-button {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #707070;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+}
+
+.answer-button:hover {
+    background-color: #505050;
+}
+
+#answers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px; /* Zmiana odstępu między pytaniem a odpowiedziami */
+}
+
+#restart-button, #start-button {
+    margin: 20px auto;
+    display: block;
+}
+
+#question-image {
+    display: block;
+    margin: 10px auto;
+}
+
+.summary-hr {
+    width: 80%;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+}
+
+#question, .summary-question {
+    word-wrap: break-word;
+    display: inline-block;
+    max-width: 50%;
+    margin: 0 auto;
+    margin-bottom: 10px; /* Dodanie odstępu między pytaniem a odpowiedziami */
+}
+
+.question-spacing {
+    margin-bottom: 10px;
+}
