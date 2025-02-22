@@ -157,7 +157,7 @@
     }
 
     function showRandomKeys() {
-      const randomKeys = getRandomKeys(slownik, 10);
+      const randomKeys = getRandomKeys(slownik, 5);
       let tableContent = randomKeys.map(key => `<tr><td>${key}</td><td><span class="hidden-value">${slownik[key]}</span></td></tr>`).join('');
       document.getElementById('keys').innerHTML = `<div class="table-container"><table><tr><th>Klucz</th><th>Wartość</th></tr>${tableContent}</table></div>`;
       document.getElementById('revealValuesButton').style.display = 'block';
