@@ -147,7 +147,7 @@ const questions = [
             { text: "bardzo słaby", correct: false },
             { text: "bardzo słaby ale czytelny", correct: false },
             { text: "słaby", correct: false },
-            { text: "dostatecznie dobry dla odbioru ", correct: true },
+            { text: "dostatecznie dobry dla odbioru (umiarkowany)", correct: true },
             { text: "dość dobry dla odbioru", correct: false },
             { text: "dobry", correct: false },
             { text: "umiarkowanie silny", correct: false },
