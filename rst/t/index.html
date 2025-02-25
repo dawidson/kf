@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test KF - RST - T</title>
+  <link rel="icon" type="image/x-icon" href="../img/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Test KF - RST - T</h1>
+  <button onclick="location.href='../index.html';">back to index </button>
+  <br>
+    <div id="test-container">
+        <button id="start-button" onclick="startTest()">Rozpocznij Test</button>
+        <div id="question-container" style="display:none;">
+            <p id="question-counter"></p> <!-- Dodane miejsce na licznik pytań -->
+            <p id="question"></p>
+            <img id="question-image" src="" alt="" style="max-width: 100%; display: none;">
+            <div id="answers"></div>
+            <p id="feedback" style="font-weight: bold;"></p>
+        </div>
+        <div id="result-container" style="display:none;">
+            <h2>Wynik:</h2>
+            <p id="result"></p>
+            <div id="summary"></div>
+            <button id="restart-button" onclick="restartTest()" style="display:none;">Uruchom test ponownie</button>
+        </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
